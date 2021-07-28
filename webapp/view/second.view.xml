@@ -1,0 +1,36 @@
+<mvc:View
+    controllerName="project1.controller.second"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true"
+    xmlns="sap.m">
+
+    <Page title="Detail">
+        <f:SimpleForm id = "test1" title="Product Details">
+				<f:content>
+                    <HBox>
+                        <Image  alt="no image found" id="image" src="{products>Image}"/>
+                        <VBox>
+                            <Label text="Product ID"/>
+                            <Text text="{products>ProductId}" />
+                            <Label text="Product Name"/>
+                            <Text text="{products>Name}" />
+                            <Label text="Supplier name "/>
+                            <Text text="{products>SupplierName}" />
+                            <Label text="Product cost per unit"/>
+                            <Text text="{products>Cost}" />
+                            <Label text="Currencykey"/>
+                            <Text text="{products>Currencykey}" />
+                            <Label text="Unit"/>
+                            <Text text="{products>Unit}" />
+                            <Label text="Weight measure"/>
+                            <Text text="{products>WeightMeasure}" />
+                            <Label text="Description"/>
+                            <Text text="{products>Description}" />
+                        </VBox>
+                    </HBox>
+                </f:content>
+		</f:SimpleForm>
+    </Page>
+
+</mvc:View>
