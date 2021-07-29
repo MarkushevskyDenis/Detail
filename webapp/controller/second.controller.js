@@ -14,9 +14,9 @@ sap.ui.define([
             },
             fnUpdateProduct: function () {
 				var uri = UIComponent.getRouterFor(this).oHashChanger.hash.split("/");
-				console.log(uri[2] + ">/" + uri[0] + "/" + uri[1]);
                 this.byId("detail").bindElement(uri[2] + ">/" + uri[0] + "/" + uri[1]);
 				this.byId("image").bindElement(uri[2] + ">/" + uri[0] + "/" + uri[1]);
+
             }
 		});
 	});

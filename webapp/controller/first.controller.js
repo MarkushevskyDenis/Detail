@@ -71,6 +71,7 @@ sap.ui.define([
 				};
 				model1 = new sap.ui.model.json.JSONModel(data);
 				this.getOwnerComponent().setModel(model1,"products1");
+				this.byId("bar").addStyleClass("noVisible");
 			},
 			onDelete: function(oEvent){
 				var localModel;
@@ -95,9 +96,13 @@ sap.ui.define([
 			},
 			onFirst: function(){
 				flag = 1;
+				this.byId("bar").removeStyleClass("noVisible");
+				this.byId("bar").addStyleClass("red");
 			},
 			onSecond: function(){
 				flag = 2;
+				this.byId("bar").removeStyleClass("noVisible");
+				this.byId("bar").addStyleClass("red");
 			},
 			onDrop2: function(oEvent){
 				if (flag === 2) {
@@ -135,6 +140,10 @@ sap.ui.define([
 
 				this._delete(model2, element);
 
+			},
+			onEndDrag: function(){
+				this.byId("bar").removeStyleClass("red");
+				this.byId("bar").addStyleClass("noVisible");
 			},
 			_delete: function(model, element){
 				var data = model.oData;

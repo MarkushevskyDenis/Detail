@@ -9,7 +9,7 @@
         <f:SimpleForm id = "detail" title="Product Details">
 				<f:content>
                     <HBox>
-                        <Image width="50%" alt="no image found" id="image" src="{products1>Image}"/>
+                        <Image width="30%" alt="no image found" id="image" src="{products1>Image}"/>
                         <VBox>
                             <Label text="Product ID"/>
                             <Text text="{products1>ProductId}" />

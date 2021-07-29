@@ -1,1 +1,11 @@
 /* Enter your custom styles here */
+.red{
+    background-color: red;
+}
+.noVisible{
+    visibility: hidden;
+}
+.mainTheme{
+    background-image: url("/images/Landscape-Color.jpg");
+    background-size: 100% 100%;
+}
