@@ -13,8 +13,10 @@ sap.ui.define([
                 }, this);
             },
             fnUpdateProduct: function () {
-                this.byId("detail").bindElement("products>/" + UIComponent.getRouterFor(this).oHashChanger.hash);
-				this.byId("image").bindElement("products>/" + UIComponent.getRouterFor(this).oHashChanger.hash);
+				var uri = UIComponent.getRouterFor(this).oHashChanger.hash.split("/");
+				console.log(uri[2] + ">/" + uri[0] + "/" + uri[1]);
+                this.byId("detail").bindElement(uri[2] + ">/" + uri[0] + "/" + uri[1]);
+				this.byId("image").bindElement(uri[2] + ">/" + uri[0] + "/" + uri[1]);
             }
 		});
 	});

@@ -5,8 +5,9 @@ sap.ui.define([
 	function (Controller) {
 		"use strict";
 
-		var model;
-
+		var model1;
+		var model2 = null;
+		var flag = 0;
 		return Controller.extend("project1.controller.first", {
 			onInit: function () {
 				var data = {
@@ -68,24 +69,83 @@ sap.ui.define([
 						}
 					]
 				};
-				model = new sap.ui.model.json.JSONModel(data);
-				this.getOwnerComponent().setModel(model,"products");
+				model1 = new sap.ui.model.json.JSONModel(data);
+				this.getOwnerComponent().setModel(model1,"products1");
 			},
 			onDelete: function(oEvent){
-				var deleteElement = model.getProperty(oEvent.getParameter("draggedControl").getBindingContextPath());
+				var localModel;
+				var deleteElement;
+		
+				if (flag === 1) {
+					localModel = model1;
+				}else if (flag === 2) {
+					localModel = model2;
+				}else{
+					return;
+				}
+				deleteElement = localModel.getProperty(oEvent.getParameter("draggedControl").getBindingContextPath());
+				this._delete(localModel, deleteElement);
+
+			},
+			onDetail: function(oEvent){
+				this.getOwnerComponent().getRouter().navTo("Second",{
+					path: oEvent.getSource().getBindingContext("products1").getPath().split("/")[2],
+					model: "products1"
+				});
+			},
+			onFirst: function(){
+				flag = 1;
+			},
+			onSecond: function(){
+				flag = 2;
+			},
+			onDrop2: function(oEvent){
+				if (flag === 2) {
+					return;
+				}
+
+				var element = model1.getProperty(oEvent.getParameter("draggedControl").getBindingContextPath());
+				var data;
+
+				if (!model2) {
+					data = {data: []};
+					data.data[0] = element;
+					model2 = new sap.ui.model.json.JSONModel(data);
+					this.getOwnerComponent().setModel(model2, "products2");
+				}else{
+					data = model2.oData;
+					data.data[data.data.length] = element;
+					model2.setData(data);
+				}
+
+				this._delete(model1, element);
+
+			},
+			onDrop1: function(oEvent){
+				if (flag === 1) {
+					return;
+				}
+
+				var element = model2.getProperty(oEvent.getParameter("draggedControl").getBindingContextPath());
+				var data;
+				
+				data = model1.oData;
+				data.data[data.data.length] = element;
+				model1.setData(data);
+
+				this._delete(model2, element);
+
+			},
+			_delete: function(model, element){
 				var data = model.oData;
+
 				for (let i = 0; i < data.data.length; i++) {
-					if (data.data[i].ProductId === deleteElement.ProductId) {
+					if (data.data[i].ProductId === element.ProductId) {
 						data.data.splice(i, 1);
 					}
 				}
 				model.setData(data);
 				model.refresh();
-			},
-			onDetail: function(oEvent){
-				this.getOwnerComponent().getRouter().navTo("Second",{
-					path: oEvent.getSource().getBindingContext("products").getPath().split("/")[2]
-				});
 			}
 		});
 	});

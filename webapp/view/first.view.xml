@@ -9,10 +9,11 @@
 >
 
     <Page id="page" title="First page">
-     	<Table id="idProductsTable"
-        items="{products>/data}">
+     	
+		<Table id="idProductsTable1" items="{products1>/data}">
 			<dragDropConfig>
-				<dnd:DragInfo sourceAggregation="items"/>
+				<dnd:DragInfo dragStart="onFirst" sourceAggregation="items"/>
+				<dnd:DropInfo drop="onDrop1"/>
 			</dragDropConfig>
 			<columns>
 				<Column
@@ -44,21 +45,67 @@
 			<items>
 				<ColumnListItem type="Navigation" press="onDetail" >
 					<cells>
-						<Text text="{products>Name}({products>ProductId})" />
-						<Text text="{products>SupplierName}" />
-						<Text text="{products>Cost} {products>Currencykey} for 1{products>Unit}" />
-						<Text text="{products>WeightMeasure} {products>Unit}" />
-						<Text text="{= ${products>Cost}*${products>WeightMeasure}} {products>Currencykey}" />
+						<Text text="{products1>Name}({products1>ProductId})" />
+						<Text text="{products1>SupplierName}" />
+						<Text text="{products1>Cost} {products1>Currencykey} for 1{products1>Unit}" />
+						<Text text="{products1>WeightMeasure} {products1>Unit}" />
+						<Text text="{= ${products1>Cost}*${products1>WeightMeasure}} {products1>Currencykey}" />
 					</cells>
 				</ColumnListItem>
 			</items>
 		</Table>
+
 		<control:DeleteButton
 		icon="sap-icon://delete">
 			<control:dragDropConfig>
 				<dnd:DropInfo drop="onDelete" />
 			</control:dragDropConfig>
 		</control:DeleteButton>
+
+		<Table id="idProductsTable2" items="{products2>/data}">
+			<dragDropConfig>
+				<dnd:DropInfo drop="onDrop2"/>
+				<dnd:DragInfo dragStart="onSecond" sourceAggregation="items"/>
+			</dragDropConfig>
+			<columns>
+				<Column
+					width="12em">
+					<Text text="Product" />
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="true">
+					<Text text="Supplier" />
+				</Column>
+				<Column
+					minScreenWidth="Desktop"
+					demandPopin="true"
+					hAlign="End">
+					<Text text="Cost per unit" />
+				</Column>
+				<Column
+					minScreenWidth="Desktop"
+					demandPopin="true"
+					hAlign="Center">
+					<Text text="Weight" />
+				</Column>
+				<Column
+					hAlign="End">
+					<Text text="Price" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{products2>Name}({products2>ProductId})" />
+						<Text text="{products2>SupplierName}" />
+						<Text text="{products2>Cost} {products2>Currencykey} for 1{products2>Unit}" />
+						<Text text="{products2>WeightMeasure} {products2>Unit}" />
+						<Text text="{= ${products2>Cost}*${products2>WeightMeasure}} {products2>Currencykey}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 
 	</Page>
 

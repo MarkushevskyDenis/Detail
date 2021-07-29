@@ -90,7 +90,7 @@
         },
         {
           "name": "Second",
-          "pattern": "data/{path}",
+          "pattern": "data/{path}/{model}",
           "target":["Second"]
         }
       ],

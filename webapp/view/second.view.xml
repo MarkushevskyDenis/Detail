@@ -9,24 +9,24 @@
         <f:SimpleForm id = "detail" title="Product Details">
 				<f:content>
                     <HBox>
-                        <Image width="50%" alt="no image found" id="image" src="{products>Image}"/>
+                        <Image width="50%" alt="no image found" id="image" src="{products1>Image}"/>
                         <VBox>
                             <Label text="Product ID"/>
-                            <Text text="{products>ProductId}" />
+                            <Text text="{products1>ProductId}" />
                             <Label text="Product Name"/>
-                            <Text text="{products>Name}" />
+                            <Text text="{products1>Name}" />
                             <Label text="Supplier name "/>
-                            <Text text="{products>SupplierName}" />
+                            <Text text="{products1>SupplierName}" />
                             <Label text="Product cost per unit"/>
-                            <Text text="{products>Cost}" />
+                            <Text text="{products1>Cost}" />
                             <Label text="Currencykey"/>
-                            <Text text="{products>Currencykey}" />
+                            <Text text="{products1>Currencykey}" />
                             <Label text="Unit"/>
-                            <Text text="{products>Unit}" />
+                            <Text text="{products1>Unit}" />
                             <Label text="Weight measure"/>
-                            <Text text="{products>WeightMeasure}" />
+                            <Text text="{products1>WeightMeasure}" />
                             <Label text="Description"/>
-                            <Text text="{products>Description}" />
+                            <Text text="{products1>Description}" />
                         </VBox>
                     </HBox>
                 </f:content>
