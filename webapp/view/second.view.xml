@@ -6,10 +6,10 @@
     xmlns="sap.m">
 
     <Page title="Detail">
-        <f:SimpleForm id = "test1" title="Product Details">
+        <f:SimpleForm id = "detail" title="Product Details">
 				<f:content>
                     <HBox>
-                        <Image  alt="no image found" id="image" src="{products>Image}"/>
+                        <Image width="50%" alt="no image found" id="image" src="{products>Image}"/>
                         <VBox>
                             <Label text="Product ID"/>
                             <Text text="{products>ProductId}" />

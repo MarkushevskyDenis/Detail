@@ -1,63 +1,65 @@
 <mvc:View
     controllerName="project1.controller.first"
     xmlns:mvc="sap.ui.core.mvc"
+	xmlns:dnd="sap.ui.core.dnd"
     displayBlock="true"
     xmlns="sap.m"
+	xmlns:control="project1.control"
     xmlns:core="sap.ui.core"
 >
 
     <Page id="page" title="First page">
      	<Table id="idProductsTable"
-		mode="SingleSelect"
-		select="onDetail"
         items="{products>/data}">
-		<columns>
-			<Column
-				width="12em">
-				<Text text="Product" />
-			</Column>
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="true">
-				<Text text="Supplier" />
-			</Column>
-			<Column
-				minScreenWidth="Desktop"
-				demandPopin="true"
-				hAlign="End">
-				<Text text="Cost per unit" />
-			</Column>
-			<Column
-				minScreenWidth="Desktop"
-				demandPopin="true"
-				hAlign="Center">
-				<Text text="Weight" />
-			</Column>
-			<Column
-				hAlign="End">
-				<Text text="Price" />
-			</Column>
-		</columns>
-		<items>
-			<ColumnListItem>
-				<cells>
-					<ObjectIdentifier
-						title="{products>Name}"
-						text="{products>ProductId}"/>
-					<Text
-						text="{products>SupplierName}" />
-					<Text
-						text="{products>Cost} {products>Currencykey} for 1{products>Unit}" />
-					<ObjectNumber
-						number="{products>WeightMeasure}"
-						unit="{products>Unit}"
-						 />
-					<Text
-						text="{= ${products>Cost}*${products>WeightMeasure}} {products>Currencykey}" />
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>
-    </Page>
+			<dragDropConfig>
+				<dnd:DragInfo sourceAggregation="items"/>
+			</dragDropConfig>
+			<columns>
+				<Column
+					width="12em">
+					<Text text="Product" />
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="true">
+					<Text text="Supplier" />
+				</Column>
+				<Column
+					minScreenWidth="Desktop"
+					demandPopin="true"
+					hAlign="End">
+					<Text text="Cost per unit" />
+				</Column>
+				<Column
+					minScreenWidth="Desktop"
+					demandPopin="true"
+					hAlign="Center">
+					<Text text="Weight" />
+				</Column>
+				<Column
+					hAlign="End">
+					<Text text="Price" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="onDetail" >
+					<cells>
+						<Text text="{products>Name}({products>ProductId})" />
+						<Text text="{products>SupplierName}" />
+						<Text text="{products>Cost} {products>Currencykey} for 1{products>Unit}" />
+						<Text text="{products>WeightMeasure} {products>Unit}" />
+						<Text text="{= ${products>Cost}*${products>WeightMeasure}} {products>Currencykey}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<control:DeleteButton
+		icon="sap-icon://delete">
+			<control:dragDropConfig>
+				<dnd:DropInfo drop="onDelete" />
+			</control:dragDropConfig>
+		</control:DeleteButton>
+
+	</Page>
 
 </mvc:View>

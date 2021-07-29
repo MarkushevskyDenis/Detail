@@ -13,8 +13,7 @@ sap.ui.define([
                 }, this);
             },
             fnUpdateProduct: function () {
-				console.log(UIComponent.getRouterFor(this).oHashChanger.hash);
-                this.byId("test1").bindElement("products>/" + UIComponent.getRouterFor(this).oHashChanger.hash);
+                this.byId("detail").bindElement("products>/" + UIComponent.getRouterFor(this).oHashChanger.hash);
 				this.byId("image").bindElement("products>/" + UIComponent.getRouterFor(this).oHashChanger.hash);
             }
 		});
