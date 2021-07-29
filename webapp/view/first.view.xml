@@ -69,7 +69,7 @@
 						</Table>
 					</l:BlockLayoutCell>
 				</l:BlockLayoutRow>
-				<l:BlockLayoutRow>
+				<l:BlockLayoutRow visible = "{= ${device>/system/desktop} === true }">
 					<l:BlockLayoutCell id="second">
 						<Table id="idProductsTable2" items="{products2>/data}">
 							<dragDropConfig>
